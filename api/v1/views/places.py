@@ -17,8 +17,7 @@ def placesByCity(city_id):
     if not storage.get(City, city_id):
         return make_response(jsonify({"error": "Not Found"}), 404)
     city = storage.get(City, city_id)
-    listPlaces = [place.to_dict() for place in city.places]
-    return jsonify(listPlaces)
+    return jsonify([place.to_dict() for place in city.places])
 
 
 @app_views.route("/places/<place_id>", methods=['GET'], strict_slashes=False)
@@ -27,7 +26,7 @@ def placeById(place_id):
 
     if not storage.get(Place, place_id):
         return make_response(jsonify({"error": "Not Found"}), 404)
-    return jsonify(storage.get(Place, place_id))
+    return jsonify(storage.get(Place, place_id).to_dict())
 
 
 @app_views.route("/places/<place_id>",
