@@ -12,7 +12,7 @@ def allAmenities():
     """new comment"""
     listAmenities = [amenities.to_dict() for amenities
                      in storage.all(Amenity).values()]
-    return listAmenities
+    return jsonify(listAmenities)
 
 
 @app_views.route('amenities/<amenity_id>',
