@@ -62,7 +62,7 @@ def AmenityPut(amenity_id):
     dataUpdate = request.get_json()
     if not dataUpdate:
         return make_response(jsonify({"error": "Not a JSON"}), 400)
-    for key, value in dataUpdate:
+    for key, value in dataUpdate.items():
         if key not in ["id", "created_at", "updated_at"]:
             setattr(obj, key, value)
     storage.save()
