@@ -65,4 +65,5 @@ def UserPut(user_id):
     for key, value in dataObj.items():
         if key not in ["id", "email", "created_at", "updated_at"]:
             setattr(obj, key, value)
+    storage.save()
     return make_response(jsonify(obj.to_dict()), 200)
