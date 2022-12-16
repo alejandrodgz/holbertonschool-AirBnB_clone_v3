@@ -12,11 +12,13 @@ from models.review import Review
 from models.state import State
 from models.user import User
 
+
 @app_views.route('/status', methods=['GET'])
 def status():
     """just hoping this is a mistake"""
-    
+
     return jsonify({"status": "OK"})
+
 
 @app_views.route('/stats', methods=['GET'])
 def stats():
@@ -30,4 +32,3 @@ def stats():
         "users": storage.count(User)
     }
     return jsonify(objects)
-
