@@ -46,7 +46,7 @@ def placeDelete(place_id):
                  methods=['POST'], strict_slashes=False)
 def placesState(city_id):
     """documentation of this method must be here"""
-    
+
     objData = request.get_json()
     if not storage.get(City, city_id):
         return make_response(jsonify({"error": "Not Found"}), 404)
