@@ -54,7 +54,7 @@ def states_put(state_id):
     json_obj = request.get_json(silent=True, force = True)
     if not json_obj:
         return make_response(jsonify({"error": "Not a JSON"}), 404)
-    if  not json_obj["name"]:
+    if "name" not in json_obj:
         return make_response(jsonify({"error": "Not found"}), 404)
     obj = storage.get(State, state_id)
     if obj is None:
