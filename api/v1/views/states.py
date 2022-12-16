@@ -41,18 +41,19 @@ def states_post():
         make_response(jsonify({"error": "Not a JSON"}), 400)
     if  not obj["name"]:
         make_response(jsonify({"error": "Missing name"}), 400)
-    newState = State()
-    for key, value in obj.items():
+    newState = State(**obj)
+    newState.save()
+    """for key, value in obj.items():
         setattr(newState, key, value)
     storage.new(newState)
-    storage.save()
+    storage.save()"""
     return make_response(jsonify(newState.to_dict()), 201)
 
 @app_views.route('/states/<state_id>', methods=['PUT'], strict_slashes=False)
 def states_put(state_id):
     """documented"""
     json_obj = request.get_json(silent=True, force = True)
-    if json_obj is None:
+    if not json_obj:
         make_response(jsonify({"error": "Not a JSON"}), 404)
     if  not json_obj["name"]:
         make_response(jsonify({"error": "Not found"}), 404)
