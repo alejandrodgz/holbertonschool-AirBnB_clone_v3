@@ -41,7 +41,7 @@ def states_post():
         make_response(jsonify({"error": "Not a JSON"}), 400)
     if  not obj["name"]:
         make_response(jsonify({"error": "Missing name"}), 400)
-    newState = State(**obj)
+    newState = State()
     for key, value in obj.items():
         setattr(newState, key, value)
     storage.new(newState)
@@ -53,7 +53,7 @@ def states_put(state_id):
     """documented"""
     json_obj = request.get_json(silent=True, force = True)
     if json_obj is None:
-        make_response(jsonify({"error": "Not found"}), 404)
+        make_response(jsonify({"error": "Not a JSON"}), 404)
     if  not json_obj["name"]:
         make_response(jsonify({"error": "Not found"}), 404)
     obj = storage.get(State, state_id)
