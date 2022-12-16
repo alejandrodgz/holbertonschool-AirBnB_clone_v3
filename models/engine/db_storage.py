@@ -98,4 +98,3 @@ class DBStorage:
                 count += 1
         
         return count
-            
