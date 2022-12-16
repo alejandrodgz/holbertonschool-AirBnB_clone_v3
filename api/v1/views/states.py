@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""module is document"""
 from api.v1.views import app_views
 from flask import jsonify, request, make_response
 from models import storage
@@ -58,4 +59,4 @@ def states_put(state_id):
     for key, value in json_obj.items():
          setattr(obj, key, value)
     obj.save()
-    return (jsonify(obj.to_dict()), 200)
+    return (jsonify(obj.to_dict()), 200
