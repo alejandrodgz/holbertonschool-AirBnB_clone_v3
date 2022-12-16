@@ -41,11 +41,12 @@ def states_post():
         make_response(jsonify({"error": "Not found"}), 404)
     if  not obj["name"]:
         make_response(jsonify({"error": "Not found"}), 404)
-    newState = State(**obj)
-    """for key, value in obj.items():
-        setattr(newState, key, value)"""
-    storage.new(newState)
-    storage.save()
+    newState = State()
+    for key, value in obj.items():
+        setattr(newState, key, value)
+    """storage.new(newState)
+    storage.save()"""
+    newState.save()
     return make_response(jsonify(newState.to_dict()), 200)
 
 @app_views.route('/states/<state_id>', methods=['PUT'], strict_slashes=False)
