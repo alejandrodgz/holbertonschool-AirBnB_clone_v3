@@ -21,7 +21,7 @@ def placesByCity(city_id):
     return jsonify(listPlaces)
 
 
-@app_views.route("/places/<place_id>", methods=['GET'])
+@app_views.route("/places/<place_id>", methods=['GET'], strict_slashes=False)
 def placeById(place_id):
     """documentation of this method must be here"""
 
@@ -30,7 +30,8 @@ def placeById(place_id):
     return jsonify(storage.get(Place, place_id))
 
 
-@app_views.route("/places/<place_id>", methods=['DELETE'])
+@app_views.route("/places/<place_id>",
+                 methods=['DELETE'], strict_slashes=False)
 def placeDelete(place_id):
     """documentation of this method must be here"""
 
