@@ -9,7 +9,7 @@ from models.state import State
 @app_views.route('/states', methods=['GET'], defaults={"state_id":None}, strict_slashes=False)
 @app_views.route('/states/<state_id>', methods=['GET'], strict_slashes=False)
 def states_get(state_id):
-    """ocumentation"""
+    """documentation"""
 
     list_obj = []
     if state_id and storage.get(State, state_id) is None:
@@ -24,6 +24,7 @@ def states_get(state_id):
 
 @app_views.route('/states/<state_id>', methods=['DELETE'], strict_slashes=False)
 def states_delete(state_id):
+    """documentation full"""
     if storage.get(State, state_id) is None:
         return make_response(jsonify({"error": "Not found"}), 404)
     obj = storage.get(State, state_id)
@@ -34,6 +35,7 @@ def states_delete(state_id):
 
 @app_views.route('/states/<state_id>', methods=['POST'], strict_slashes=False)
 def states_post():
+    """documentation"""
     obj = request.get_json(silent=True)
     if obj is None:
         make_response(jsonify({"error": "Not found"}), 404)
@@ -48,6 +50,7 @@ def states_post():
 
 @app_views.route('/states/<state_id>', methods=['PUT'], strict_slashes=False)
 def states_put(state_id):
+    """documented"""
     json_obj = request.get_json(silent=True)
     if json_obj is None:
         make_response(jsonify({"error": "Not found"}), 404)
@@ -59,4 +62,4 @@ def states_put(state_id):
     for key, value in json_obj.items():
          setattr(obj, key, value)
     obj.save()
-    return (jsonify(obj.to_dict()), 200
+    return make_response(jsonify(obj.to_dict(), 200))
