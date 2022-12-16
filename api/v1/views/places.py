@@ -14,9 +14,9 @@ from models.user import User
 def placesByCity(city_id):
     """documentation of this method must be here"""
 
-    city = storage.get(City, city_id)
-    if not city:
+    if not storage.get(City, city_id):
         return make_response(jsonify({"error": "Not Found"}), 404)
+    city = storage.get(City, city_id)
     listPlaces = [place.to_dict() for place in city.places]
     return jsonify(listPlaces)
 
