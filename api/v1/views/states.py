@@ -43,7 +43,7 @@ def states_post():
         make_response(jsonify({"error": "Not found"}), 404)
     newState = State(**obj)
     """for key, value in obj.items():
-        setattr(newState, key, value)""""
+        setattr(newState, key, value)"""
     """storage.new(newState)
     storage.save()"""
     newState.save()
