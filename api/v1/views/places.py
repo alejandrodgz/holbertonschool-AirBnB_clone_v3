@@ -26,7 +26,7 @@ def placeById(place_id):
     """documentation of this method must be here"""
 
     if not storage.get(Place, place_id):
-        return make_response(jsonify({"error", "Not Found"}), 404)
+        return make_response(jsonify({"error": "Not Found"}), 404)
     return jsonify(storage.get(Place, place_id))
 
 
@@ -36,7 +36,7 @@ def placeDelete(place_id):
     """documentation of this method must be here"""
 
     if not storage.get(Place, place_id):
-        return make_response(jsonify({"error", "Not Found"}), 404)
+        return make_response(jsonify({"error": "Not Found"}), 404)
     obj = storage.get(Place, place_id)
     storage.delete(obj)
     storage.save()
