@@ -60,7 +60,7 @@ def citiesPost(state_id):
         setattr(new_city, key, value)
     storage.new(new_city)
     storage.save()
-    return make_response(jsonify(new_city.to_dict()), 200)
+    return make_response(jsonify(new_city.to_dict()), 201)
 
 
 @app_views.route('cities/<city_id>', methods=['PUT'], strict_slashes=False)
