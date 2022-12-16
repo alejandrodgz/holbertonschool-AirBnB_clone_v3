@@ -16,7 +16,7 @@ def placesByCity(city_id):
 
     city = storage.get(City, city_id)
     if not city:
-        return make_response(jsonify({"error", "Not Found"}), 404)
+        return make_response(jsonify({"error": "Not Found"}), 404)
     listPlaces = [place.to_dict() for place in city.places]
     return jsonify(listPlaces)
 
