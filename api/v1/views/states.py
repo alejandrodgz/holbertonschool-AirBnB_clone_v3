@@ -36,7 +36,7 @@ def states_delete(state_id):
 @app_views.route('/states/<state_id>', methods=['POST'], strict_slashes=False)
 def states_post():
     """documentation"""
-    obj = request.get_json(silent=True)
+    obj = request.get_json(silent=True, force=True)
     if obj is None:
         make_response(jsonify({"error": "Not found"}), 404)
     if  not obj["name"]:
@@ -51,7 +51,7 @@ def states_post():
 @app_views.route('/states/<state_id>', methods=['PUT'], strict_slashes=False)
 def states_put(state_id):
     """documented"""
-    json_obj = request.get_json(silent=True)
+    json_obj = request.get_json(silent=True, force = True)
     if json_obj is None:
         make_response(jsonify({"error": "Not found"}), 404)
     if  not json_obj["name"]:
