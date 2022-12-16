@@ -30,7 +30,7 @@ def reviewId(review_id):
 
 @app_views.route('reviews/<review_id>', methods=['DELETE'],
                  strict_slashes=False)
-def reviewId(review_id):
+def reviewDelete(review_id):
     """documentation of this method must be here"""
     if not storage.get(Review, review_id):
         return make_response(jsonify({"error": "Not Found"}), 404)
