@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""blueprint init have faith"""
+"""blueprint init have faissth"""
 from flask import Blueprint
 
 
