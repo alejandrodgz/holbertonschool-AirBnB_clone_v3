@@ -36,10 +36,11 @@ def states_delete(state_id):
 @app_views.route('/states', methods=['POST'], strict_slashes=False)
 def states_post():
     """documentation"""
-    obj = request.get_json(silent=True, force=True)
+
+    obj = request.get_json()
     if not obj:
         return make_response(jsonify({"error": "Not a JSON"}), 400)
-    if  not obj["name"]:
+    if "name" not in obj:
         return make_response(jsonify({"error": "Missing name"}), 400)
     newState = State()
     for key, value in obj.items():
