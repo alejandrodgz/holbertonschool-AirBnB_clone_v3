@@ -8,7 +8,9 @@ from models.place import Place
 from models.review import Review
 from models.user import User
 
-@app_views.route('places/<place_id>/reviews', methods=['GET'], strict_slashes=False)
+
+@app_views.route('places/<place_id>/reviews',
+                 methods=['GET'], strict_slashes=False)
 def reviewsPlace(place_id):
     """documentation of this method must be here"""
     if not storage.get(Place, place_id):
@@ -16,14 +18,18 @@ def reviewsPlace(place_id):
     place = storage.get(Place, place_id)
     return jsonify([reviews.to_dict() for reviews in place.reviews])
 
-@app_views.route('reviews/<review_id>', methods=['GET'], strict_slashes=False)
+
+@app_views.route('reviews/<review_id>',
+                 methods=['GET'], strict_slashes=False)
 def reviewId(review_id):
     """documentation of this method must be here"""
     if not storage.get(Review, review_id):
         return make_response(jsonify({"error": "Not Found"}), 404)
     return jsonify(storage.get(Review, review_id).to_dict())
 
-@app_views.route('reviews/<review_id>', methods=['DELETE'], strict_slashes=False)
+
+@app_views.route('reviews/<review_id>', methods=['DELETE'],
+                 strict_slashes=False)
 def reviewId(review_id):
     """documentation of this method must be here"""
     if not storage.get(Review, review_id):
@@ -33,7 +39,9 @@ def reviewId(review_id):
     storage.save()
     return make_response(jsonify({}), 200)
 
-@app_views.route('places/<place_id>/reviews', methods=['POST'], strict_slashes=False)
+
+@app_views.route('places/<place_id>/reviews',
+                 methods=['POST'], strict_slashes=False)
 def reviewPost(place_id):
     """documentation of this method must be here"""
     objData = request.get_json()
@@ -55,7 +63,9 @@ def reviewPost(place_id):
     storage.save()
     return make_response(jsonify(newObj.to_dict()), 201)
 
-@app_views.route('reviews/<review_id>', methods=['PUT'], strict_slashes=False)
+
+@app_views.route('reviews/<review_id>', methods=['PUT'],
+                 strict_slashes=False)
 def reviewPut(review_id):
     """documentation of this method must be here"""
     if not storage.get(Review, review_id):
